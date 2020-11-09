@@ -21,7 +21,12 @@ while game_is_on:
     screen.update()
 
     car_manager.create_car()
-    car_manager.move_cars()
+    car_manager.move_cars(scoreboard.get_level())
+    if car_manager.detect_collision(player):
+        scoreboard.game_over()
+        game_is_on = False
 
     if player.has_cleared_level():
         scoreboard.increase_level()
+
+screen.exitonclick()
